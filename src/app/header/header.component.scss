@@ -14,3 +14,13 @@ $background-pale: #D1C4E9;
     color:floralwhite;
     min-height: 150px;
 }
+
+.fixed{
+  position: fixed;
+  top: 0;
+  z-index: 999;
+}
+
+.active{
+  background: rgb(34, 38, 253);
+}
