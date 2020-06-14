@@ -5,6 +5,7 @@ import { DishService } from '../services/dish.service';
 import { PromotionService } from '../services/promotion.service';
 import { LeaderService } from '../services/leader.service';
 import { Leader } from '../shared/leader';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit {
   promotion : Promotion;
   leader: Leader;
 
-  constructor(private dishService : DishService, private promotionService : PromotionService,private leaderService: LeaderService) { }
+  constructor(private dishService : DishService, private promotionService : PromotionService,private leaderService: LeaderService, private router: Router) { }
 
   ngOnInit(): void {
     this.dishService.getFeaturedDish()
@@ -26,6 +27,13 @@ export class HomeComponent implements OnInit {
     .then(promotion => this.promotion = promotion);
     this.leaderService.getFeaturedLeader()
     .then(leader => this.leader= leader);
+
+    this.router.events.subscribe((evt) => {
+        if(!(evt instanceof NavigationEnd)) {
+          return;
+        }
+        window.scrollTo(0,0);
+    });
   }
 
 }
