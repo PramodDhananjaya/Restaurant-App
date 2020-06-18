@@ -11,5 +11,14 @@
         "lipsmacking",
         "ristorante",
         "youtube"
+    ],
+    "cSpell.words": [
+        "contacttype",
+        "fform",
+        "firstname",
+        "lastname",
+        "maxlength",
+        "minlength",
+        "telnum"
     ]
 }
