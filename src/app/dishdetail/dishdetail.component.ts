@@ -8,6 +8,7 @@ import { FormBuilder , FormGroup , Validators } from '@angular/forms'
 import { Comment } from '../shared/comment';
 import { DISHES} from '../shared/dishes';
 import { validateBasis } from '@angular/flex-layout';
+import { environment } from '../../environments/environment'
 
 
 @Component({
@@ -21,6 +22,7 @@ export class DishdetailComponent implements OnInit {
   dishIds : string[] = [];
   prev: string;
   next: string;
+  baseURL = environment.baseURL;
 
   commentForm : FormGroup;
   comment: Comment;
