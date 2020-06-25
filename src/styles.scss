@@ -42,3 +42,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .flex-spacer {
 flex: 1 1 auto;
 }
+
+.highlight{
+  background-color: #e1dee4;
+  border: #6b6a6a;
+  z-index: 1;
+  transform: scale(1.01);
+
+}
