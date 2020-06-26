@@ -7,11 +7,20 @@ import { LeaderService } from '../services/leader.service';
 import { Leader } from '../shared/leader';
 import { Router, NavigationEnd } from '@angular/router';
 import { environment } from '../../environments/environment';
+import { flyInOut, expand } from '../animations/app.animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  host: {
+    '[@flyInOut]' : 'true',
+    'style' : 'display: block;'
+  },
+  animations: [
+    flyInOut(),
+    expand()
+  ]
 })
 export class HomeComponent implements OnInit {
 
