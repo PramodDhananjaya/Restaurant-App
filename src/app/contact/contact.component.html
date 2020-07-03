@@ -37,8 +37,8 @@
   </div>
   <div fxFlex fxFlexOffset="20px" class="form-size">
     <h3>Send Your Feedback</h3>
-    <p>{{feedbackForm.value | json}} {{feedbackForm.status | json}}</p>
-    <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()" #fform="ngForm">
+    <!-- <p>{{feedbackForm.value | json}} {{feedbackForm.status | json}}</p> -->
+    <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()" #fform="ngForm"  [hidden]="feedbackCopy" [@expand]>
       <p>
         <mat-form-field class="half-width">
           <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
@@ -86,5 +86,24 @@
       </p>
       <button type="submit" mat-button class="background-primary text-floral-white" [disabled]=feedbackForm.invalid>Submit</button>
     </form>
+
   </div>
+  <div  fxFlex *ngIf="returnFeedback" [@expand]>
+    <h3>Your Submission</h3>
+    <mat-list>
+      <mat-list-item>First Name : {{returnFeedback.firstname}}</mat-list-item>
+      <mat-list-item>Last Name  : {{returnFeedback.lastname}}</mat-list-item>
+      <mat-list-item>Tel. Number  : {{returnFeedback.telnum}}</mat-list-item>
+      <mat-list-item>Email        : {{returnFeedback.email}}</mat-list-item>
+      <mat-list-item>Contact You? : {{returnFeedback.agree}}</mat-list-item>
+      <mat-list-item>How?         : {{returnFeedback.contacttype}}</mat-list-item>
+      <mat-list-item>Feedback     : {{returnFeedback.message}}</mat-list-item>
+    </mat-list>
+  </div>
+  <div *ngIf="feedbackCopy && !returnFeedback" [@expand]>
+    <mat-spinner></mat-spinner>
+  </div>
+
+
+
 </div>

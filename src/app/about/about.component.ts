@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LeaderService } from '../services/leader.service';
 import { Leader } from '../shared/leader';
 import { flyInOut, expand } from '../animations/app.animations';
+import { environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-about',
@@ -18,13 +19,16 @@ import { flyInOut, expand } from '../animations/app.animations';
 })
 export class AboutComponent implements OnInit {
 
+  baseURL = environment.baseURL;
+  errMsg: string;
+
   constructor(private leaderService: LeaderService) { }
 
   leaders : Leader[];
 
   ngOnInit(): void {
     this.leaderService.getLeaders()
-    .subscribe(leaders => this.leaders = leaders);
+    .subscribe(leaders => this.leaders = leaders, errmsg => this.errMsg=<any>errmsg);
   }
 
 }

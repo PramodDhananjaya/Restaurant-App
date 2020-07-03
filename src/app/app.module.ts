@@ -33,6 +33,7 @@ import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
 import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
+import { FeedbackService } from './services/feedback.service';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -82,7 +83,7 @@ import { HighlightDirective } from './directives/highlight.directive'
     LoginComponent
   ],
   providers: [DishService,PromotionService,LeaderService,
-    ProcessHTTPMsgService
+    ProcessHTTPMsgService,FeedbackService
   ],
   bootstrap: [AppComponent]
 })

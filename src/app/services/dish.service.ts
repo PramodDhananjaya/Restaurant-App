@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Dish } from '../shared/dish';
-import { DISHES } from '../shared/dishes';
-import { of , Observable} from 'rxjs';
-import { delay} from 'rxjs/operators';
+import {  Observable} from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { baseURL } from '../shared/baseurl';
+import { environment } from '../../environments/environment'
 import { map ,catchError} from 'rxjs/operators';
 
 import { ProcessHTTPMsgService } from './process-httpmsg.service';
@@ -16,20 +14,22 @@ import { ProcessHTTPMsgService } from './process-httpmsg.service';
 })
 export class DishService {
 
+  baseURL = environment.baseURL;
+
   constructor(private http: HttpClient,private processHTTPMsgService : ProcessHTTPMsgService) { }
 
   getDishes(): Observable<Dish[]> {
-      return this.http.get<Dish[]>(baseURL + 'dishes')
+      return this.http.get<Dish[]>(this.baseURL + 'dishes')
       .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
   getDish(id :string) : Observable<Dish> {
-    return this.http.get<Dish>(baseURL + 'dishes/'+ id)
+    return this.http.get<Dish>(this.baseURL + 'dishes/'+ id)
     .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
   getFeaturedDish(): Observable<Dish> {
-    return this.http.get<Dish[]>(baseURL + 'dishes?featured=true').pipe(map(dishes => dishes[0]))
+    return this.http.get<Dish[]>(this.baseURL + 'dishes?featured=true').pipe(map(dishes => dishes[0]))
     .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
@@ -44,7 +44,7 @@ export class DishService {
         'Content-Type':  'application/json'
       })
     };
-    return this.http.put<Dish>(baseURL + 'dishes/' + dish.id, dish, httpOptions)
+    return this.http.put<Dish>(this.baseURL + 'dishes/' + dish.id, dish, httpOptions)
       .pipe(catchError(this.processHTTPMsgService.handleError));
 
   }

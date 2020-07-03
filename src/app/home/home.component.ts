@@ -28,6 +28,8 @@ export class HomeComponent implements OnInit {
   promotion : Promotion;
   leader: Leader;
   dishErrMsg: string;
+  promotionErrMsg: string;
+  leaderErrMsg: string;
 
   baseURL = environment.baseURL;
 
@@ -38,9 +40,9 @@ export class HomeComponent implements OnInit {
     this.dishService.getFeaturedDish()
     .subscribe(dish => this.dish = dish, errmsg => this.dishErrMsg = <any>errmsg);
     this.promotionService.getFeaturedPromotion()
-    .subscribe(promotion => this.promotion = promotion);
+    .subscribe(promotion => this.promotion = promotion,errmsg => this.promotionErrMsg= <any>errmsg );
     this.leaderService.getFeaturedLeader()
-    .subscribe(leader => this.leader= leader);
+    .subscribe(leader => this.leader= leader, errmsg => this.leaderErrMsg = <any>errmsg );
 
     this.router.events.subscribe((evt) => {
         if(!(evt instanceof NavigationEnd)) {
